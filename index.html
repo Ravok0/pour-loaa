@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pour Loaa 💖</title>
+  <title>Pour Loaa 💖 - Version Améliorée</title>
   <style>
     :root {
       --pink: #ff5a7a;
@@ -11,6 +11,8 @@
       --text: #4a2b33;
       --light-pink: #ffc2d1;
       --dark-pink: #e84372;
+      --purple: #b983ff;
+      --gold: #ffd966;
     }
     
     * {
@@ -38,6 +40,30 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+    
+    /* Pétales flottants */
+    .petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+    }
+    
+    .petal {
+      position: absolute;
+      background: rgba(255, 182, 193, 0.6);
+      border-radius: 150% 0 150% 0;
+      width: 15px;
+      height: 15px;
+      transform: rotate(45deg);
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(45deg); opacity: 0.8; }
+      100% { transform: translateY(100vh) rotate(405deg); opacity: 0; }
     }
     
     .card {
@@ -76,6 +102,39 @@
       background-clip: text;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       line-height: 1.3;
+    }
+    
+    /* Compteur de coeurs */
+    .heart-counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 15px;
+      font-size: 18px;
+      color: var(--dark-pink);
+      background: rgba(255, 230, 240, 0.6);
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 90, 122, 0.2);
+    }
+    
+    .heart-icon {
+      color: #ff3d68;
+      animation: pulse 1.5s ease infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    .counter-number {
+      font-weight: 700;
+      font-size: 22px;
+      background: linear-gradient(45deg, var(--dark-pink), #ff8fb0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     .buttons {
@@ -176,7 +235,6 @@
       font-weight: 500;
     }
     
-    /* loader */
     .loader {
       margin-top: 20px;
     }
@@ -214,10 +272,16 @@
     
     .next {
       margin-top: 20px;
-      background: linear-gradient(135deg, #6a5af9, #4d7cfe);
+      background: linear-gradient(135deg, #b983ff, #9f7afe);
       color: white;
       padding: 14px 32px;
       font-size: 17px;
+    }
+    
+    .next:hover {
+      background: linear-gradient(135deg, #9f7afe, #8a6be0);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(185, 131, 255, 0.4);
     }
     
     @keyframes fadeInUp {
@@ -231,7 +295,6 @@
       }
     }
     
-    /* floating emojis */
     .floaters {
       position: fixed;
       inset: 0;
@@ -247,6 +310,33 @@
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
       user-select: none;
       z-index: 1;
+    }
+    
+    /* Style pour les images flottantes */
+    .floater-img {
+      position: absolute;
+      animation: float 12s linear infinite;
+      opacity: 0.8;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+      user-select: none;
+      z-index: 1;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    
+    .floater-img:nth-child(2n) {
+      animation-duration: 15s;
+      animation-delay: -2s;
+    }
+    
+    .floater-img:nth-child(3n) {
+      animation-duration: 18s;
+      animation-delay: -5s;
+    }
+    
+    .floater-img:nth-child(4n) {
+      animation-duration: 14s;
+      animation-delay: -7s;
     }
     
     .floater:nth-child(2n) {
@@ -284,7 +374,7 @@
     .letter {
       text-align: left;
       margin-top: 20px;
-      background: linear-gradient(135deg, rgba(255, 247, 250, 0.9), rgba(255, 235, 242, 0.9));
+      background: linear-gradient(135deg, rgba(255, 247, 250, 0.95), rgba(255, 235, 242, 0.95));
       border-radius: 20px;
       padding: 25px;
       box-shadow: 
@@ -325,11 +415,12 @@
       animation: heartbeat 1.5s ease infinite;
       z-index: 2;
       pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(255, 90, 122, 0.3));
     }
     
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      50% { transform: scale(1.3); }
     }
     
     .confetti {
@@ -340,6 +431,76 @@
       opacity: 0;
       pointer-events: none;
       z-index: 100;
+    }
+    
+    /* Galerie d'émojis */
+    .gallery {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 25px 0 15px;
+      flex-wrap: wrap;
+    }
+    
+    .gallery-item {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffe9ef, #ffdbe4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 12px 24px rgba(255, 90, 122, 0.2);
+    }
+    
+    /* Message surprise flottant */
+    .surprise-message {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 15px 25px;
+      border-radius: 999px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      border: 2px solid var(--light-pink);
+      z-index: 30;
+      animation: slideIn 0.5s ease-out;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .surprise-message:hover {
+      transform: scale(1.05);
+      background: var(--soft);
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    /* Émoji réactif */
+    .reactive-emoji {
+      font-size: 48px;
+      margin: 20px 0;
+      animation: bounce 2s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     
     /* Responsive */
@@ -367,11 +528,36 @@
       .letter {
         padding: 20px;
       }
+      
+      .gallery-item {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+      
+      .surprise-message {
+        bottom: 10px;
+        right: 10px;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Pétales flottants -->
+  <div class="petals" id="petals"></div>
+  
   <div class="card">
+    <!-- Compteur de coeurs -->
+    <div class="heart-counter" id="heartCounter">
+      <span class="heart-icon">❤️</span>
+      <span>Amour accumulé:</span>
+      <span class="counter-number" id="heartCount">0</span>
+      <span>💕</span>
+    </div>
+    
+    <div class="reactive-emoji" id="mainEmoji">💖</div>
     <h1 id="title">Veux-tu être ma Valentine ? 💘</h1>
     
     <div class="buttons" id="choices">
@@ -388,9 +574,19 @@
     
     <div class="final hidden" id="final">
       <h2>Yess ! 🎉</h2>
-      <h3>JE T'AIME!</h3>
+      <h3 style="font-size: 28px; margin: 15px 0;">JE T'AIME! 💕</h3>
       <p><strong>Je savais que tu allais cliquer sur oui ! 💕</strong></p>
       <p>Tu viens de faire le plus beau choix de ta vie 😏</p>
+      
+      <!-- Galerie d'émojis -->
+      <div class="gallery">
+        <div class="gallery-item">🌸</div>
+        <div class="gallery-item">💗</div>
+        <div class="gallery-item">🎀</div>
+        <div class="gallery-item">💘</div>
+        <div class="gallery-item">✨</div>
+      </div>
+      
       <button class="next" id="next">C'est pas fini... 💌</button>
     </div>
     
@@ -408,7 +604,13 @@
     </div>
   </div>
   
-  <!-- Container pour les emojis flottants -->
+  <!-- Message surprise flottant -->
+  <div class="surprise-message" id="surpriseBtn">
+    <span>🎁</span>
+    <span>Surprise pour Loaa !</span>
+  </div>
+  
+  <!-- Container pour les emojis et images flottants -->
   <div class="floaters" id="floaters"></div>
   
   <script>
@@ -424,6 +626,9 @@
     const next = document.getElementById('next');
     const letterWrap = document.getElementById('letterWrap');
     const floaters = document.getElementById('floaters');
+    const heartCount = document.getElementById('heartCount');
+    const mainEmoji = document.getElementById('mainEmoji');
+    const surpriseBtn = document.getElementById('surpriseBtn');
     
     // Texte pour le bouton "Non"
     const noTexts = [
@@ -434,47 +639,102 @@
       'Tu veux vraiment dire non ?',
       'Réfléchis bien...',
       'Je sais que tu veux dire oui 😉',
-      'Dernière chance !'
+      'Dernière chance !',
+      'Bon.. Je vais pleurer là 🥺',
+      'STOOOOP 😭'
     ];
-    let noCount = 0;
     
-    // Configuration des emojis flottants
-    const emojis = [
-      '💖', '💕', '💘', '💗', '💓', '💞', 
-      '😻', '🐱', '🎀', '✨', '🌟', '🥰',
-      '😘', '💌', '💋', '🌸', '🌹', '🎁'
+    let noCount = 0;
+    let lovePoints = 0;
+    
+    // --- TES IMAGES HELLO KITTY & KUROMI (réintégrées !) ---
+    const floatingImages = [
+      "téléchargement.png",
+      "téléchargement.jfif",
+      "téléchargement (1).png",
+      "téléchargement (1).jfif",
+      "images.png",
+      "images.jfif",
+      "58485516b772315a9e4dd5d5.png",
+      "58485502b772315a9e4dd5d3.png",
+      "5848553eb772315a9e4dd5da.png",
+      "6207a56426ab99000460a362.png",
+      "6207a57a26ab99000460a363.png",
+      "240_F_649374089_xMbYF3BHqqPETNGPj6FHFoHxER1QX6nv.jpg",
+      "5eaaacb0ad89b60004c4c7c3.png",
+      "5eaaac07ad89b60004c4c7bd.png",
+      "5eaaab22ad89b60004c4c7b5.png"
     ];
+    
+    // Emojis flottants
+    const emojis = ['💗', '🎀', '🌸', '🌹', '💕', '💖', '✨', '⭐'];
+    
+    // Création des pétales
+    function createPetals() {
+      const petalsContainer = document.getElementById('petals');
+      for (let i = 0; i < 30; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (5 + Math.random() * 8) + 's';
+        petal.style.animationDelay = '-' + (Math.random() * 5) + 's';
+        petal.style.background = `rgba(255, ${150 + Math.random() * 50}, ${180 + Math.random() * 75}, ${0.3 + Math.random() * 0.4})`;
+        petal.style.width = (8 + Math.random() * 12) + 'px';
+        petal.style.height = (8 + Math.random() * 12) + 'px';
+        petalsContainer.appendChild(petal);
+      }
+    }
+    
+    // Créer les images flottantes (TES IMAGES !)
+    function createImageFloaters() {
+      // 25 images flottantes de Hello Kitty & Kuromi
+      for (let i = 0; i < 25; i++) {
+        const img = document.createElement('img');
+        img.className = 'floater-img';
+        // Prend une image aléatoire dans ta liste
+        img.src = floatingImages[Math.floor(Math.random() * floatingImages.length)];
+        img.style.width = (25 + Math.random() * 30) + 'px'; // 25-55px
+        img.style.left = Math.random() * 100 + '%';
+        img.style.animationDuration = (10 + Math.random() * 12) + 's';
+        img.style.animationDelay = '-' + (Math.random() * 8) + 's';
+        img.alt = 'Hello Kitty';
+        floaters.appendChild(img);
+      }
+    }
     
     // Créer les emojis flottants
-    function createFloaters() {
-      // Créer l'emoji personnalisé à partir de la base64
-      const customEmoji = document.createElement('img');
-      customEmoji.className = 'floater';
-      customEmoji.src = 'data:image/jpeg;base64,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';
-      customEmoji.style.width = '40px';
-      customEmoji.style.height = '40px';
-      customEmoji.style.borderRadius = '50%';
-      customEmoji.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
-      customEmoji.style.left = Math.random() * 100 + '%';
-      customEmoji.style.animationDuration = (10 + Math.random() * 10) + 's';
-      customEmoji.style.animationDelay = '-' + (Math.random() * 5) + 's';
-      floaters.appendChild(customEmoji);
-      
-      // Créer d'autres emojis flottants
+    function createEmojiFloaters() {
       for(let i = 0; i < 20; i++) {
         const floater = document.createElement('span');
         floater.className = 'floater';
         floater.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         floater.style.left = Math.random() * 100 + '%';
-        floater.style.fontSize = (20 + Math.random() * 25) + 'px';
+        floater.style.fontSize = (18 + Math.random() * 20) + 'px';
         floater.style.animationDuration = (8 + Math.random() * 12) + 's';
         floater.style.animationDelay = '-' + (Math.random() * 8) + 's';
         floaters.appendChild(floater);
       }
     }
     
-    // Initialiser les emojis flottants
-    createFloaters();
+    // Initialiser tous les flotteurs
+    createPetals();
+    createImageFloaters(); // TES IMAGES sont là !
+    createEmojiFloaters();
+    
+    // Mise à jour du compteur de coeurs
+    function updateHeartCounter() {
+      lovePoints++;
+      heartCount.textContent = lovePoints;
+      
+      // Changer l'emoji principal selon le nombre de points
+      if (lovePoints > 50) {
+        mainEmoji.textContent = '💘';
+      } else if (lovePoints > 30) {
+        mainEmoji.textContent = '💗';
+      } else if (lovePoints > 15) {
+        mainEmoji.textContent = '💖';
+      }
+    }
     
     // Gestion du bouton "Non"
     function moveNo() {
@@ -487,10 +747,14 @@
         hint.textContent = 'Il semble que le bouton "Non" ait un petit problème, Loaa 😇😼';
       }
       
+      if(noCount >= 7) {
+        hint.textContent = 'Mais arrête de fuir ! 😂 Clique sur Oui !';
+      }
+      
       noCount++;
       
-      // Ajouter un effet visuel amusant
       createHeart(noBtn);
+      updateHeartCounter();
     }
     
     noBtn.addEventListener('mouseenter', moveNo);
@@ -500,11 +764,32 @@
     yesBtn.addEventListener('click', () => {
       choices.classList.add('hidden');
       hint.textContent = 'Yesss… je le savais ! 😍';
+      updateHeartCounter();
       
-      // Ajouter des confettis
-      createConfetti();
+      // Bonus de points
+      for(let i = 0; i < 50; i++) {
+        setTimeout(() => updateHeartCounter(), i * 10);
+      }
       
-      // la barre de progression
+      // Pluie de confettis
+      for(let i = 0; i < 3; i++) {
+        setTimeout(createConfetti, i * 200);
+      }
+      
+      // Ajouter des images flottantes supplémentaires (Tes images !)
+      for(let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const img = document.createElement('img');
+          img.className = 'floater-img';
+          img.src = floatingImages[Math.floor(Math.random() * floatingImages.length)];
+          img.style.width = '35px';
+          img.style.left = Math.random() * 100 + '%';
+          img.style.animationDuration = '10s';
+          floaters.appendChild(img);
+        }, i * 300);
+      }
+      
+      // Barre de progression
       loader.classList.remove('hidden');
       let progress = 1;
       percent.textContent = progress + '%';
@@ -514,9 +799,9 @@
         fill.style.width = progress + '%';
         percent.textContent = progress + '%';
         
-        // Ajouter un coeur flottant occasionnellement
-        if (progress % 15 === 0) {
+        if (progress % 10 === 0) {
           createHeart(document.querySelector('.card'));
+          updateHeartCounter();
         }
         
         if (progress >= 100) {
@@ -525,9 +810,10 @@
           final.classList.remove('hidden');
           hint.textContent = '';
           
-          // Ajouter  de confettis
-          setTimeout(createConfetti, 300);
-          setTimeout(createConfetti, 600);
+          // Vague de confettis
+          for(let i = 0; i < 5; i++) {
+            setTimeout(createConfetti, i * 150);
+          }
         }
       }, 20);
     });
@@ -537,10 +823,60 @@
       final.classList.add('hidden');
       letterWrap.classList.remove('hidden');
       
-      // Ajouter des coeurs flottants supplémentaires
-      for(let i = 0; i < 10; i++) {
-        setTimeout(createHeart, i * 200, document.querySelector('.letter'));
+      // Pluie de coeurs
+      for(let i = 0; i < 20; i++) {
+        setTimeout(createHeart, i * 100, document.querySelector('.letter'));
       }
+      
+      // Bonus de points
+      for(let i = 0; i < 100; i++) {
+        setTimeout(() => updateHeartCounter(), i * 5);
+      }
+      
+      // Ajoute encore des images Hello Kitty !
+      for(let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const img = document.createElement('img');
+          img.className = 'floater-img';
+          img.src = floatingImages[Math.floor(Math.random() * floatingImages.length)];
+          img.style.width = (20 + Math.random() * 25) + 'px';
+          img.style.left = Math.random() * 100 + '%';
+          floaters.appendChild(img);
+        }, i * 200);
+      }
+    });
+    
+    // Message surprise
+    surpriseBtn.addEventListener('click', () => {
+      const messages = [
+        "Loaa, t'es la meilleure ! 💕",
+        "2 mois de bonheur avec toi ! 🎉",
+        "Je t'aime plus que tout ! 💘",
+        "Mon cœur est à toi ! 💗",
+        "Notre histoire est magique ✨"
+      ];
+      
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      alert(randomMessage);
+      
+      surpriseBtn.style.background = 'linear-gradient(135deg, var(--pink), var(--dark-pink))';
+      surpriseBtn.style.color = 'white';
+      setTimeout(() => {
+        surpriseBtn.style.background = 'white';
+        surpriseBtn.style.color = 'var(--text)';
+      }, 500);
+      
+      createConfetti();
+      updateHeartCounter();
+      
+      // Ajoute une image surprise !
+      const img = document.createElement('img');
+      img.className = 'floater-img';
+      img.src = floatingImages[Math.floor(Math.random() * floatingImages.length)];
+      img.style.width = '40px';
+      img.style.left = '50%';
+      img.style.animationDuration = '8s';
+      floaters.appendChild(img);
     });
     
     // Fonction pour créer des coeurs flottants
@@ -558,7 +894,6 @@
         document.body.appendChild(heart);
       }
       
-      // Supprimer le coeur après l'animation
       setTimeout(() => {
         heart.remove();
       }, 2000);
@@ -566,7 +901,7 @@
     
     // Fonction pour créer des confettis
     function createConfetti() {
-      const colors = ['#ff5a7a', '#ffc2d1', '#6a5af9', '#4d7cfe', '#ffd166'];
+      const colors = ['#ff5a7a', '#ffc2d1', '#b983ff', '#9f7afe', '#ffd966', '#ff8fb0'];
       
       for(let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
@@ -574,16 +909,16 @@
         confetti.style.left = Math.random() * 100 + 'vw';
         confetti.style.top = '-10px';
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.width = (5 + Math.random() * 10) + 'px';
+        confetti.style.width = (5 + Math.random() * 12) + 'px';
         confetti.style.height = confetti.style.width;
         confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
         confetti.style.opacity = '1';
+        confetti.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
         
         document.body.appendChild(confetti);
         
-        // Animation des confettis
-        const duration = 1 + Math.random() * 2;
-        const horizontal = (Math.random() * 200) - 100;
+        const duration = 1 + Math.random() * 2.5;
+        const horizontal = (Math.random() * 300) - 150;
         
         confetti.style.transition = `all ${duration}s ease-out`;
         setTimeout(() => {
@@ -591,22 +926,49 @@
           confetti.style.opacity = '0';
         }, 10);
         
-        // Supprimer les confettis après l'animation
         setTimeout(() => {
           confetti.remove();
         }, duration * 1000 + 100);
       }
     }
     
-    // Ajouter un effet de clic sur tous les boutons
+    // Effet de clic sur les boutons
     document.querySelectorAll('button').forEach(button => {
       button.addEventListener('click', function() {
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
           this.style.transform = '';
         }, 150);
+        updateHeartCounter();
       });
     });
+    
+    // Coeur au survol de la carte
+    const card = document.querySelector('.card');
+    card.addEventListener('mouseenter', () => {
+      createHeart(card);
+    });
+    
+    // Coeurs au mouvement de souris
+    document.addEventListener('mousemove', (e) => {
+      if (Math.random() < 0.02) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '💕';
+        heart.style.left = e.clientX - 15 + 'px';
+        heart.style.top = e.clientY - 15 + 'px';
+        heart.style.fontSize = '20px';
+        heart.style.position = 'fixed';
+        heart.style.animation = 'heartbeat 1s ease';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, 1000);
+      }
+    });
+    
+    console.log('Site amélioré avec TES IMAGES Hello Kitty & Kuromi ! 💕');
   </script>
 </body>
 </html>
